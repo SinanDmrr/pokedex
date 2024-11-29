@@ -33,6 +33,14 @@ a {
   color: #ffffff;
 }
 
+.max-width {
+  max-width: 1920px;
+}
+
+.d-none {
+  display: none;
+}
+
 html,
 body {
   height: 100%;
@@ -43,20 +51,90 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 header {
-  text-align: center;
-  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
   background: #1a1a2e;
   width: 100%;
 }
-header h1 {
+header #head-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1920px;
+  margin: 1.2rem 0;
+}
+header #head-container a {
+  display: flex;
+  gap: 1rem;
+}
+header #head-container a img {
+  width: 4rem;
+  aspect-ratio: 1/1;
+}
+header #head-container a h1 {
   font-family: "Bangers", sans-serif;
-  font-size: 3rem;
+  font-size: 4rem;
   color: #ffcd0d;
+}
+header #head-container #searching-area #search-input {
+  border: 0.15rem solid #ffcd0d;
+  border-radius: 8px;
+  padding: 0.4rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #e8dcae;
+}
+header #head-container #searching-area #search-input::-moz-placeholder {
+  color: #000000;
+  opacity: 0.4;
+}
+header #head-container #searching-area #search-input::placeholder {
+  color: #000000;
+  opacity: 0.4;
+}
+header #head-container #searching-area #search-input:focus {
+  caret-color: rgb(254, 0, 1);
+}
+header #head-container #searching-area #search-input:focus::-moz-placeholder {
+  transform: translateY(-30px);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  -moz-transition: transform 0.3s, font-size 0.3s, opacity 0.3s;
+  transition: transform 0.3s, font-size 0.3s, opacity 0.3s;
+}
+header #head-container #searching-area #search-input:focus::placeholder {
+  transform: translateY(-30px);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: transform 0.3s, font-size 0.3s, opacity 0.3s;
+}
+header #head-container #searching-area #search-btn {
+  background-color: #ffcd0d;
+  border: 0.15rem solid #000000;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+header #head-container #searching-area #search-btn:hover {
+  background-color: #ffd840;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+header #head-container #searching-area #search-btn:focus {
+  outline: none;
+  box-shadow: 0 0 8px #000000;
+}
+header #head-container #searching-area #search-btn:active {
+  transform: scale(0.98);
 }
 
 main {
@@ -67,7 +145,15 @@ main {
   width: 100%;
   background: #03034f;
 }
-main .pokemon {
+main #main-container {
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #main-container .pokemon {
   position: relative;
   height: 8rem;
   aspect-ratio: 1/1;
@@ -76,7 +162,7 @@ main .pokemon {
   border: 0.5rem solid #000000;
   animation: spin 2.5s linear infinite;
 }
-main .pokemon::before {
+main #main-container .pokemon::before {
   content: "";
   position: absolute;
   height: 0.6rem;
@@ -85,7 +171,7 @@ main .pokemon::before {
   top: 50%;
   transform: translateY(-50%);
 }
-main .pokemon::after {
+main #main-container .pokemon::after {
   content: "";
   position: absolute;
   height: 2rem;
@@ -97,13 +183,55 @@ main .pokemon::after {
   transform: translate(-50%, -50%);
   box-shadow: inset 0 0 0 8px #000000, inset 0 0 0 10px #ffffff, inset 0 0 0 12px #000000;
 }
+main #main-container #pokemon-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+main #main-container #pokemon-card-container .pokemon-card {
+  border: 2px black solid;
+  width: 12rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  text-align: justify;
+  transition: transform 0.3s, filter 0.3s;
+}
+main #main-container #pokemon-card-container .pokemon-card #pokemon-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+main #main-container #pokemon-card-container .pokemon-card .types {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+main #main-container #pokemon-card-container .pokemon-card .types .type {
+  display: inline-block;
+  padding: 0.2rem 0.4rem 0.5rem 0.4rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 1px black, -1px -1px 1px white;
+}
+main #main-container #pokemon-card-container .pokemon-card:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+  transform: scale(1.1);
+}
 
 footer {
-  text-align: center;
   width: 100%;
-  padding: 1rem 0;
   background: #1a1a2e;
-  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer #footer-content {
+  margin: 1rem 0;
+  text-align: center;
+}
+footer #footer-content #footer-links {
+  font-size: 1rem;
   color: #ffffff;
 }
 
@@ -113,5 +241,12 @@ footer {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 1920px) {
+  header,
+  main,
+  footer {
+    padding: 0 2rem;
   }
 }/*# sourceMappingURL=style.css.map */

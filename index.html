@@ -13,15 +13,39 @@
     <script src="assets/js/htmlTemplate.js" defer></script>
     <script src="assets/js/script.js" defer></script>
   </head>
-  <body>
-    <header><h1>Pokédex</h1></header>
+  <body onload="init()">
+    <header>
+      <div id="head-container" class="max-width">
+        <a href="index.html">
+          <img src="assets/img/favicon.png" alt="" />
+          <h1>Pokédex</h1>
+        </a>
+        <div id="searching-area">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="what are you looking for?" />
+          <button id="search-btn">Search</button>
+        </div>
+      </div>
+    </header>
     <main>
-      <div class="pokemon"></div>
+      <div id="main-container">
+        <div id="loadingPokeball" class="pokemon"></div>
+        <div id="pokemon-card-container">
+          
+        </div>
+      </div>
     </main>
     <footer>
-      <a href="#">Impressum</a>
-      <span>|</span>
-      <a href="#">Datenschutz</a>
+      <div id="footer-content">
+        <div id="footer-links">
+          <a href="#">Impressum</a>
+          <span>|</span>
+          <a href="#">Datenschutz</a>
+        </div>
+        <p><p>&copy; 2024 Sinan Demir. Alle Rechte vorbehalten.</p></p>
+      </div>
     </footer>
   </body>
 </html>
