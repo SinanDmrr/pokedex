@@ -1,0 +1,117 @@
+/* bangers-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Bangers";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/bangers-v24-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* fredoka-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/fredoka-v14-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* fredoka-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/fredoka-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Fredoka", sans-serif;
+  color: #ffffff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  padding: 1rem 0;
+  background: #1a1a2e;
+  width: 100%;
+}
+header h1 {
+  font-family: "Bangers", sans-serif;
+  font-size: 3rem;
+  color: #ffcd0d;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #03034f;
+}
+main .pokemon {
+  position: relative;
+  height: 8rem;
+  aspect-ratio: 1/1;
+  background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, #ffffff 50%);
+  border-radius: 50%;
+  border: 0.5rem solid #000000;
+  animation: spin 2.5s linear infinite;
+}
+main .pokemon::before {
+  content: "";
+  position: absolute;
+  height: 0.6rem;
+  width: 7.5rem;
+  background: #000000;
+  top: 50%;
+  transform: translateY(-50%);
+}
+main .pokemon::after {
+  content: "";
+  position: absolute;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 0 8px #000000, inset 0 0 0 10px #ffffff, inset 0 0 0 12px #000000;
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  padding: 1rem 0;
+  background: #1a1a2e;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=style.css.map */

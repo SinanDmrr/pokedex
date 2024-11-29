@@ -1,0 +1,139 @@
+/* bangers-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Bangers";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/bangers-v24-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* fredoka-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/fredoka-v14-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* fredoka-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/fredoka-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+$color-header: #ffcd0d;
+$color-font-color: #ffffff;
+$color-border: #000000;
+$color-bg-dark: #1a1a2e;
+$color-bg-light: #03034f;
+$color-text-light: #ffffff;
+$color-text-dark: #a9a9b3;
+$color-background: #16213e;
+$color-red-pokeball: rgb(254, 0, 1);
+$color-white-pokeball: #ffffff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: $color-font-color;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Fredoka", sans-serif;
+  color: $color-font-color;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  padding: 1rem 0;
+  background: $color-bg-dark;
+  width: 100%;
+
+  h1 {
+    font-family: "Bangers", sans-serif;
+    font-size: 3rem;
+    color: $color-header;
+  }
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: $color-bg-light;
+
+  .pokemon {
+    position: relative;
+    height: 8rem;
+    aspect-ratio: 1/1;
+    background: linear-gradient(
+      to bottom,
+      $color-red-pokeball 50%,
+      $color-white-pokeball 50%
+    );
+    border-radius: 50%;
+    border: 0.5rem solid $color-border;
+    animation: spin 2.5s linear infinite;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 0.6rem;
+      width: 7.5rem;
+      background: $color-border;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 2rem;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: $color-white-pokeball;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: inset 0 0 0 8px $color-border,
+        inset 0 0 0 10px $color-white-pokeball, inset 0 0 0 12px $color-border;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  padding: 1rem 0;
+  background: $color-bg-dark;
+  font-size: 0.9rem;
+  color: $color-text-light;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
