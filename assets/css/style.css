@@ -54,6 +54,53 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+body .cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #16213e;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+body .cookie-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+body .cookie-banner p a {
+  color: #ffcd0d;
+  text-decoration: underline;
+}
+body .cookie-banner p a:hover {
+  color: #ffd840;
+}
+body .btn-design {
+  background-color: #ffcd0d;
+  border: 0.15rem solid #000000;
+  border-radius: 8px;
+  color: #1a1a2e;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+body .btn-design:hover {
+  background-color: #ffd840;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+body .btn-design:focus {
+  outline: none;
+  box-shadow: 0 0 8px #000000;
+}
+body .btn-design:active {
+  transform: scale(0.98);
+}
 
 header {
   display: flex;
@@ -114,28 +161,6 @@ header #head-container #searching-area #search-input:focus::placeholder {
   opacity: 0.7;
   transition: transform 0.3s, font-size 0.3s, opacity 0.3s;
 }
-header #head-container #searching-area #search-btn {
-  background-color: #ffcd0d;
-  border: 0.15rem solid #000000;
-  border-radius: 8px;
-  color: #ffffff;
-  padding: 0.4rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-}
-header #head-container #searching-area #search-btn:hover {
-  background-color: #ffd840;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-header #head-container #searching-area #search-btn:focus {
-  outline: none;
-  box-shadow: 0 0 8px #000000;
-}
-header #head-container #searching-area #search-btn:active {
-  transform: scale(0.98);
-}
 
 main {
   flex: 1;
@@ -152,9 +177,22 @@ main #main-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 2rem 0;
 }
-main #main-container .pokemon {
-  position: relative;
+main #main-container #loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #main-container #loading-overlay #loadingPokeball {
   height: 8rem;
   aspect-ratio: 1/1;
   background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, #ffffff 50%);
@@ -162,7 +200,7 @@ main #main-container .pokemon {
   border: 0.5rem solid #000000;
   animation: spin 2.5s linear infinite;
 }
-main #main-container .pokemon::before {
+main #main-container #loading-overlay #loadingPokeball::before {
   content: "";
   position: absolute;
   height: 0.6rem;
@@ -171,7 +209,7 @@ main #main-container .pokemon::before {
   top: 50%;
   transform: translateY(-50%);
 }
-main #main-container .pokemon::after {
+main #main-container #loading-overlay #loadingPokeball::after {
   content: "";
   position: absolute;
   height: 2rem;
@@ -188,7 +226,6 @@ main #main-container #pokemon-card-container {
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  margin: 2rem 0;
 }
 main #main-container #pokemon-card-container .pokemon-card {
   border: 2px black solid;
@@ -218,6 +255,9 @@ main #main-container #pokemon-card-container .pokemon-card:hover {
   filter: brightness(0.9);
   transform: scale(1.1);
 }
+main #main-container #load-more-btn {
+  margin-top: 2rem;
+}
 
 footer {
   width: 100%;
@@ -236,13 +276,28 @@ footer #footer-content #footer-links {
 }
 
 @keyframes spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
+.colors2 {
+  border-bottom: 16px solid blue;
+}
+
+.colors3 {
+  border-bottom: 16px solid red;
+  border-right: 16px solid green;
+}
+
+.colors4 {
+  border-bottom: 16px solid red;
+  border-right: 16px solid green;
+  border-left: 16px solid pink;
+}
+
 @media (max-width: 1920px) {
   header,
   main,

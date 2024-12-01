@@ -9,11 +9,16 @@
       href="assets/img/favicon.png"
       type="image/x-icon" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="assets/js/cookie.js"></script>
     <script src="assets/js/db.js" defer></script>
     <script src="assets/js/htmlTemplate.js" defer></script>
     <script src="assets/js/script.js" defer></script>
   </head>
   <body onload="init()">
+    <div id="cookie-banner" class="cookie-banner">
+      <p>Diese Website verwendet Cookies, um Ihnen das beste Erlebnis zu bieten. Weitere Informationen finden Sie in unserer <a href="#">Datenschutzerklärung</a>.</p>
+      <button id="accept-cookies" class="btn-design" onclick="acceptCookies()">Akzeptieren</button>
+    </div>
     <header>
       <div id="head-container" class="max-width">
         <a href="index.html">
@@ -25,16 +30,18 @@
             type="text"
             id="search-input"
             placeholder="what are you looking for?" />
-          <button id="search-btn">Search</button>
+          <button id="search-btn" class="btn-design">Search</button>
         </div>
       </div>
     </header>
-    <main>
-      <div id="main-container">
-        <div id="loadingPokeball" class="pokemon"></div>
-        <div id="pokemon-card-container">
-          
+    <main>      
+      <div id="main-container">        
+        <div id="loading-overlay">
+          <div id="loadingPokeball"></div>
         </div>
+        
+        <div id="pokemon-card-container"></div>
+        <button id="load-more-btn" class="btn-design d-none" onclick="loadMore()">Load More</button>
       </div>
     </main>
     <footer>
