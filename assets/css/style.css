@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* bangers-regular - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -293,7 +292,7 @@ main #main-container #load-more-btn {
   padding: 0.2rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  width: 20rem;
+  min-width: 320px;
   aspect-ratio: 1/1.5;
   display: flex;
   justify-content: center;
@@ -372,76 +371,61 @@ main #main-container #load-more-btn {
   font-size: 1.5rem;
   cursor: pointer;
 }
-#overlay #card-container-border #card-container #big-pokemon-card #about table {
-  width: 100%;
-  height: 100%;
-  border-collapse: collapse;
-  border: 1px solid black;
-}
-#overlay #card-container-border #card-container #big-pokemon-card #about table td {
-  border: 1px solid transparent;
-  padding: 4px;
-  text-align: left;
-}
-#overlay #card-container-border #card-container #big-pokemon-card #about table tr td:first-child {
-  width: 30%;
-  font-weight: bold;
-}
-#overlay #card-container-border #card-container #big-pokemon-card #about table tr td:last-child {
-  width: 80%;
-}
-#overlay #card-container-border #card-container #big-pokemon-card #about table tr:nth-child(odd) {
-  background-color: whitesmoke;
-}
-#overlay #card-container-border #card-container #big-pokemon-card #about table tr:nth-child(even) {
-  background-color: transparent;
-}
+#overlay #card-container-border #card-container #big-pokemon-card #about table,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table {
   width: 100%;
   height: 100%;
   border-collapse: collapse;
   border: 1px solid black;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table td,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table td {
   border: 1px solid transparent;
   padding: 4px;
   text-align: left;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table tr td:first-child,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table tr td:first-child {
   width: 30%;
   font-weight: bold;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table tr td:last-child,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table tr td:last-child {
   width: 80%;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table tr:nth-child(odd),
 #overlay #card-container-border #card-container #big-pokemon-card #stats table tr:nth-child(odd) {
   background-color: whitesmoke;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table tr:nth-child(even),
 #overlay #card-container-border #card-container #big-pokemon-card #stats table tr:nth-child(even) {
   background-color: transparent;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table .progress-bar-container,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table .progress-bar-container {
-  width: 100%; /* Volle Breite der Zelle */
-  height: 20px; /* Erhöhte Höhe für besseren Lesekomfort */
-  background-color: #e0e0e0; /* Hintergrundfarbe der Progressbar */
-  border-radius: 10px; /* Abgerundete Ecken */
-  overflow: hidden; /* Text oder Inhalt, der außerhalb liegt, wird abgeschnitten */
-  position: relative; /* Für absolute Positionierung von Kind-Elementen */
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table .progress-bar,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table .progress-bar {
-  height: 100%; /* Höhe der Progressbar passt sich an den Container an */
-  background-color: #4caf50; /* Farbe der Progressbar */
-  border-radius: 10px 0 0 10px; /* Linke Ecken abrunden */
-  position: relative; /* Text innerhalb der Progressbar positionieren */
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 10px 0 0 10px;
+  position: relative;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #about table .progress-bar span,
 #overlay #card-container-border #card-container #big-pokemon-card #stats table .progress-bar span {
-  position: absolute; /* Ermöglicht zentrierte Platzierung */
-  top: 50%; /* Vertikale Mitte */
-  left: 50%; /* Horizontale Mitte */
-  transform: translate(-50%, -50%); /* Exakte Zentrierung */
-  color: white; /* Textfarbe für guten Kontrast */
-  font-size: 12px; /* Schriftgröße anpassen */
-  font-weight: bold; /* Optional, für bessere Lesbarkeit */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 footer {
@@ -468,21 +452,6 @@ footer #footer-content #footer-links {
     transform: rotate(360deg);
   }
 }
-.colors2 {
-  border-bottom: 16px solid blue;
-}
-
-.colors3 {
-  border-bottom: 16px solid red;
-  border-right: 16px solid green;
-}
-
-.colors4 {
-  border-bottom: 16px solid red;
-  border-right: 16px solid green;
-  border-left: 16px solid pink;
-}
-
 @media (max-width: 1920px) {
   header,
   main,

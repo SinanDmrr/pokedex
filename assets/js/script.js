@@ -30,7 +30,6 @@ let pokemonLimit = 20;
 // Eventlistener
 searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    console.log(searchTerm);
     filterPokemonCards(searchTerm);
 });
 
@@ -60,6 +59,7 @@ function hideLoadingAnimation() {
     loadingOverlay.style.display = "none";
     document.body.style.overflow = "";
 }
+
 async function fetchPokemon(pokemonLimit, startId = 1) {
     for (let i = startId; i <= pokemonLimit; i++) {
         if (pokemonDataArray.some(pokemon => pokemon.id === i)) {
@@ -133,8 +133,6 @@ function showPokemonDetails(id, background, capitalizeName) {
     const clickedPokemon = pokemonDataArray[id];
     const typesString = getTypeOfPokemon(clickedPokemon.types);
     showPokemonCardOverlay();
-    //TODO Muss entfernt werden
-    console.log(clickedPokemon);
     overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background);
 }
 
@@ -150,9 +148,6 @@ function hidePokemonCardOverlay() {
 
     overlay.style.display = "none"
     document.body.style.overflow = '';
-
-    // bigPokemonCardContainer.innerHTML = '';
-    console.clear();
 }
 
 function showSection(sectionToShow) {
@@ -160,10 +155,10 @@ function showSection(sectionToShow) {
     const statsSection = document.getElementById("stats");
 
     if (sectionToShow === "about") {
-        aboutSection.classList.remove("d-none"); // Zeige About
-        statsSection.classList.add("d-none");   // Verstecke Stats
+        aboutSection.classList.remove("d-none");
+        statsSection.classList.add("d-none");
     } else if (sectionToShow === "stats") {
-        statsSection.classList.remove("d-none"); // Zeige Stats
-        aboutSection.classList.add("d-none");    // Verstecke About
+        statsSection.classList.remove("d-none");
+        aboutSection.classList.add("d-none");
     }
 }

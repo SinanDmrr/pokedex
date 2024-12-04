@@ -68,66 +68,66 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                 </div>
                 <div id="stats" class="d-none">
                     <table>
-                    <tr>
-                        <td>${(pokemonData.stats[0].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[0].base_stat}%;">
-                                    <span>${pokemonData.stats[0].base_stat}</span>
+                        <tr>
+                            <td>${(pokemonData.stats[0].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[0].base_stat}%;">
+                                        <span>${pokemonData.stats[0].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>${(pokemonData.stats[1].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[1].base_stat}%;">
-                                    <span>${pokemonData.stats[1].base_stat}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>${(pokemonData.stats[1].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[1].base_stat}%;">
+                                        <span>${pokemonData.stats[1].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>${(pokemonData.stats[2].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[2].base_stat}%;">
-                                    <span>${pokemonData.stats[2].base_stat}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>${(pokemonData.stats[2].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[2].base_stat}%;">
+                                        <span>${pokemonData.stats[2].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>${(pokemonData.stats[3].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[3].base_stat}%;">
-                                    <span>${pokemonData.stats[3].base_stat}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>${(pokemonData.stats[3].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[3].base_stat}%;">
+                                        <span>${pokemonData.stats[3].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>${(pokemonData.stats[4].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[4].base_stat}%;">
-                                    <span>${pokemonData.stats[4].base_stat}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>${(pokemonData.stats[4].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[4].base_stat}%;">
+                                        <span>${pokemonData.stats[4].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>${(pokemonData.stats[5].stat.name).toUpperCase()}</td>
-                        <td>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: ${pokemonData.stats[5].base_stat}%;">
-                                    <span>${pokemonData.stats[5].base_stat}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>${(pokemonData.stats[5].stat.name).toUpperCase()}</td>
+                            <td>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: ${pokemonData.stats[5].base_stat}%;">
+                                        <span>${pokemonData.stats[5].base_stat}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
