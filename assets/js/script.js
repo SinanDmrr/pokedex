@@ -91,7 +91,7 @@ function loadPokemonIntoCard(pokemonData) {
     pokemonCardContainer.innerHTML += cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesString);
 }
 
-function getTypeOfPokemon(pokemonTypeContainer){
+function getTypeOfPokemon(pokemonTypeContainer) {
     const typesString = pokemonTypeContainer
         .map(typeObj => `
             <div class="type" style="background-color: ${typeInfo[typeObj.type.name][0] || "none"}">
@@ -99,7 +99,7 @@ function getTypeOfPokemon(pokemonTypeContainer){
                 <p>${typeObj.type.name}</p>
             </div>`)
         .join(" ");
-        
+
     return typesString
 }
 
@@ -128,19 +128,20 @@ function filterPokemonCards(searchTerm) {
     loadMoreBtn.style.display = searchTerm.length > 0 ? "none" : "block";
 }
 
-function showPokemonDetail(id){
+function showPokemonDetails(id, background, capitalizeName) {
     const overlay = document.getElementById('overlay');
-    const bigPokemonCardContainer = document.querySelector(".big-pokemon-card");
     const clickedPokemon = pokemonDataArray[id];
-    const typeStrings = getTypeOfPokemon(clickedPokemon.types);
+    const typesString = getTypeOfPokemon(clickedPokemon.types);
     showPokemonCardOverlay();
+    //TODO Muss entfernt werden
+    console.log(clickedPokemon);
+    overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background);
 }
 
-function showPokemonCardOverlay(){
+function showPokemonCardOverlay() {
     const overlay = document.getElementById('overlay');
-    const bigPokemonCardContainer = document.querySelector(".big-pokemon-card");
     overlay.classList.remove("d-none");
-    overlay.style.display = 'block';
+    overlay.style.display = "flex";
 }
 
 function hidePokemonCardOverlay() {
@@ -150,87 +151,19 @@ function hidePokemonCardOverlay() {
     overlay.style.display = "none"
     document.body.style.overflow = '';
 
-    bigPokemonCardContainer.innerHTML = '';
+    // bigPokemonCardContainer.innerHTML = '';
     console.clear();
 }
 
+function showSection(sectionToShow) {
+    const aboutSection = document.getElementById("about");
+    const statsSection = document.getElementById("stats");
 
-// TODO RAUS LÖSCHEN WENN FERTIG 
-// async function showPokemonDetails(id, backgroundColor, capitalizeName) {
-//     const overlay = document.getElementById('overlay');
-//     const bigPokemonCardContainer = document.querySelector(".big-pokemon-card");
-//     const clickedPokemon = pokemonDataArray[id];
-//     const typesString = clickedPokemon.types
-//         .map(typeObj => `<div class="type" style="background-color: ${typeColors[typeObj.type.name] || "none"}">
-//                             ${typeObj.type.name}
-//                          </div>`)
-//         .join(" ");
-
-//     console.log(pokemonDataArray[id]);
-
-//     bigPokemonCardContainer.style.backgroundColor = backgroundColor;
-//     bigPokemonCardContainer.innerHTML += /*html*/`
-//     <div id="big-pokemon-card-sections">
-//     <div id="name-hp-section" class="big-pokemon-card-section">
-//             <p>${capitalizeName}</p>
-//             <p>HP: ${clickedPokemon["stats"][0]["base_stat"]}</p>
-//         </div>
-//         <div id="img-info-section">
-//             <div id="img-section">
-//                 <img src="${clickedPokemon["sprites"]["front_default"]}" alt="">
-//                 <img src="${clickedPokemon["sprites"]["back_default"]}" alt="">
-//             </div>   
-//             <div id="info-section">
-//             <p>${clickedPokemon["height"]}m</p>
-//             <p>${clickedPokemon["weight"]}kg</p>
-//             <p>${(Math.random() < 0.5 ? "Male ♂" : "Female ♀")}</p>
-//             </div>         
-            
-//         </div >
-//         <div id="skill-section" class="big-pokemon-card-section">
-//             <p></p>
-//         </div>      
-//         <div class="types">        
-//             ${typesString}
-//         </div>
-//         <div id="abilities-section">    
-//             <p>1.${clickedPokemon["moves"][0]["move"]["name"]}</p>
-//             <p>2.${clickedPokemon["moves"][1]["move"]["name"]}</p>            
-//             <p>3.${clickedPokemon["moves"][2]["move"]["name"]}</p>
-//             <p>4.${clickedPokemon["moves"][3]["move"]["name"]}</p>            
-//         </div>
-//         <div id="evolution">
-            
-//         </div>
-//     </div >
-
-//         `;
-//     overlay.style.display = 'flex';
-//     document.body.style.overflow = 'hidden';
-
-//     const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${clickedPokemon.id}`);
-//     const speciesData = await speciesResponse.json();
-//     const evolutionUrl = speciesData.evolution_chain.url;
-
-//     const evolutionResponse = await fetch(evolutionUrl);
-//     const evolutionData = await evolutionResponse.json();
-//     const evolutionChain = getEvolutionChain(evolutionData.chain);
-
-//     // Render Evolution Chain
-//     const evolutionContainer = document.getElementById("evolution");
-//     evolutionContainer.innerHTML = evolutionChain
-//         .map(name => `<p>${name}</p>`)
-//         .join("");
-// }
-
-// function getEvolutionChain(chain) {
-//     let evolutions = [];
-//     let current = chain;
-
-//     while (current) {
-//         evolutions.push(current.species.name); // Pokémon-Name hinzufügen
-//         current = current.evolves_to[0]; // Nächste Evolution
-//     }
-
-//     return evolutions;
-// }
+    if (sectionToShow === "about") {
+        aboutSection.classList.remove("d-none"); // Zeige About
+        statsSection.classList.add("d-none");   // Verstecke Stats
+    } else if (sectionToShow === "stats") {
+        statsSection.classList.remove("d-none"); // Zeige Stats
+        aboutSection.classList.add("d-none");    // Verstecke About
+    }
+}

@@ -11,14 +11,127 @@ function cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesStr
     `;
 }
 
-function bigCardTemplate() {
+function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
     return /*html*/ `
-    <div class="big-pokemon-card" style="background-color: ${cardBackgroundColor}">
-        <h2>#${pokemonData.id} <br> ${capitalizeName}</h2>
-        <img id="pokemon-img" src="${pokemonData.sprites.front_default}" alt="">
-        <div class="types">
+    <div id="card-container-border" onclick="event.stopPropagation()">
+        <div id="card-container" style="background-color: ${background}" >
+            <div id="card-container-name-id">
+                <p>#${pokemonData.id}</p>
+                <p>${capitalizeName}</p>
+            </div>
+            <div id="card-container-types">
             ${typesString}
-        </div>
+            </div>
+            <div id="card-container-img-container">
+                <img src="${pokemonData["sprites"]["other"]["official-artwork"]["front_default"]}" id="card-container-img" alt="">
+            </div>
+            <div id="big-pokemon-card">
+                <div id="big-pokemon-card-sections">
+                    <p onclick="showSection('about')">About</p>
+                    <p onclick="showSection('stats')">Base Stats</p>
+                </div>
+                <div id="about" class="">
+                    <table>
+                        <tr>
+                            <td>ID:</td>
+                            <td>${pokemonData.id}</td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td>${capitalizeName}</td>
+                        </tr>
+                        <tr>
+                            <td>Height:</td>
+                            <td>${pokemonData.height}cm</td>
+                        </tr>
+                        <tr>
+                            <td>Weight:</td>
+                            <td>${pokemonData.weight}kg</td>
+                        </tr>
+                        <tr>
+                            <td>1.Skill:</td>
+                            <td>${pokemonData.moves[0].move.name}</td>
+                        </tr>
+                        <tr>
+                            <td>2.Skill:</td>
+                            <td>${pokemonData.moves[1].move.name}</td>
+                        </tr>
+                        <tr>
+                            <td>3.Skill:</td>
+                            <td>${pokemonData.moves[2].move.name}</td>
+                        </tr>
+                        <tr>
+                            <td>4.Skill:</td>
+                            <td>${pokemonData.moves[3].move.name}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="stats" class="d-none">
+                    <table>
+                    <tr>
+                        <td>${(pokemonData.stats[0].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[0].base_stat}%;">
+                                    <span>${pokemonData.stats[0].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>${(pokemonData.stats[1].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[1].base_stat}%;">
+                                    <span>${pokemonData.stats[1].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>${(pokemonData.stats[2].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[2].base_stat}%;">
+                                    <span>${pokemonData.stats[2].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>${(pokemonData.stats[3].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[3].base_stat}%;">
+                                    <span>${pokemonData.stats[3].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>${(pokemonData.stats[4].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[4].base_stat}%;">
+                                    <span>${pokemonData.stats[4].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>${(pokemonData.stats[5].stat.name).toUpperCase()}</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${pokemonData.stats[5].base_stat}%;">
+                                    <span>${pokemonData.stats[5].base_stat}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>        
     </div>
 `;
 }

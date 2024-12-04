@@ -24,6 +24,9 @@
   src: url("../fonts/fredoka-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+$font-family-pokemon: "Bangers", sans-serif;
+$font-family-header: "Fredoka", sans-serif;
+
 $color-header: #ffcd0d;
 $color-font-color: #ffffff;
 $color-border: #000000;
@@ -56,7 +59,7 @@ a {
 html,
 body {
   height: 100%;
-  font-family: "Fredoka", sans-serif;
+  font-family: $font-family-header;
   color: $color-font-color;
 }
 
@@ -246,91 +249,6 @@ main {
       }
     }
 
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      overflow: hidden;
-
-      #card-container {
-        background: linear-gradient(to right, #979b9e, #dcdedf, #979b9e);
-        padding: 0.2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        width: 15rem;
-        aspect-ratio: 1/1.5;
-
-        .big-pokemon-card {
-          height: 100%;
-          border-radius: 0.5rem;
-          padding: 0.2rem 0.5rem;
-
-          #big-pokemon-card-sections {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            .big-pokemon-card-section {
-              display: flex;
-              justify-content: space-between;
-              width: 100%;
-            }
-            #img-info-section {
-              width: 100%;
-              height: 30%;
-              background-size: cover;
-              border: solid 1px white;
-              border-radius: 1rem;
-              display: flex;
-              flex-direction: row;
-              justify-content: space-evenly;
-              align-items: center;
-              display: flex;
-              flex-direction: column;
-              font-size: 0.8rem;
-              div {
-                display: flex;
-              }
-              #info-section {
-                display: flex;
-                justify-content: space-between;
-                width: 80%;
-              }
-            }
-            .types {
-              display: flex;
-              justify-content: space-evenly;
-              margin-bottom: 0.5rem;
-              .type {
-                border: 1px solid white;
-                border-radius: 1rem;
-                height: auto;
-                padding: 0.2rem 1rem;
-                text-align: center;
-                align-items: center;
-                box-shadow: 1px 1px 1px $color-bg-dark;
-              }
-            }
-            #abilities-section {
-              display: flex;
-              flex-direction: column;
-              width: 90%;
-              padding: 0.5rem 1rem;
-              border: 1px solid white;
-              border-radius: 1rem;
-            }
-          }
-        }
-      }
-    }
-
     #pokemon-card-container {
       display: flex;
       flex-wrap: wrap;
@@ -386,6 +304,283 @@ main {
     }
   }
 }
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+
+  #card-container-border {
+    background: linear-gradient(to right, #979b9e, #dcdedf, #979b9e);
+    padding: 0.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 20rem;
+    aspect-ratio: 1/1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-border;
+    #card-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 98%;
+      width: 98%;
+      border-radius: 1rem;
+      #card-container-name-id {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 0 0.5rem 0;
+        color: whitesmoke;
+        font-size: 1.5rem;
+        font-family: $font-family-header;
+        text-shadow: 1px 1px 3px black;
+      }
+
+      #card-container-types {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1rem;
+        aspect-ratio: 1/1;
+        gap: 1rem;
+        .type {
+          height: auto;
+          width: auto;
+          display: flex;
+          gap: 0.5rem;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          border-radius: 1rem;
+          padding: 0.2rem;
+          .type-icon {
+            height: 1.5rem;
+            aspect-ratio: 1/1;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+          }
+        }
+      }
+
+      #card-container-img-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        #card-container-img {
+          width: 5rem;
+          aspect-ratio: 1/1;
+        }
+      }
+
+      #big-pokemon-card {
+        height: 60%;
+        width: 100%;
+        background-color: rgb(227, 227, 227);
+        border-radius: 2rem 2rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        bottom: 0;
+        #big-pokemon-card-sections {
+          display: flex;
+          justify-content: space-between;
+          margin: 0.5rem 2rem;
+
+          p {
+            font-family: $font-family-pokemon;
+            font-size: 1.5rem;
+            cursor: pointer;
+          }
+        }
+        #about {
+          table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse; // Vereint benachbarte Rahmen zu einem einzigen Rahmen
+            border: 1px solid black; // Der äußere Rahmen des Tables
+
+            td {
+              border: 1px solid transparent; // Der Rahmen jeder Zelle
+              padding: 4px; // Abstand innerhalb der Zellen
+              text-align: left; // Text links ausrichten
+            }
+
+            // Breite der ersten Spalte festlegen
+            tr td:first-child {
+              width: 30%; // Breite der ersten Spalte
+              font-weight: bold; // Optional, damit die IDs hervorgehoben sind
+            }
+
+            // Breite der zweiten Spalte festlegen
+            tr td:last-child {
+              width: 80%; // Breite der zweiten Spalte
+            }
+            tr:nth-child(odd) {
+              background-color: whitesmoke; // Alternierende Zeilenfarben
+            }
+            tr:nth-child(even) {
+              background-color: transparent; // Alternierende Zeilenfarben
+            }
+          }
+        }
+        #stats {
+          table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse; // Vereint benachbarte Rahmen zu einem einzigen Rahmen
+            border: 1px solid black; // Der äußere Rahmen des Tables
+
+            td {
+              border: 1px solid transparent; // Der Rahmen jeder Zelle
+              padding: 4px; // Abstand innerhalb der Zellen
+              text-align: left; // Text links ausrichten
+            }
+
+            // Breite der ersten Spalte festlegen
+            tr td:first-child {
+              width: 30%; // Breite der ersten Spalte
+              font-weight: bold; // Optional, damit die IDs hervorgehoben sind
+            }
+
+            // Breite der zweiten Spalte festlegen
+            tr td:last-child {
+              width: 80%; // Breite der zweiten Spalte
+            }
+            tr:nth-child(odd) {
+              background-color: whitesmoke; // Alternierende Zeilenfarben
+            }
+            tr:nth-child(even) {
+              background-color: transparent; // Alternierende Zeilenfarben
+            }
+
+            .progress-bar-container {
+              width: 100%; /* Volle Breite der Zelle */
+              height: 20px; /* Erhöhte Höhe für besseren Lesekomfort */
+              background-color: #e0e0e0; /* Hintergrundfarbe der Progressbar */
+              border-radius: 10px; /* Abgerundete Ecken */
+              overflow: hidden; /* Text oder Inhalt, der außerhalb liegt, wird abgeschnitten */
+              position: relative; /* Für absolute Positionierung von Kind-Elementen */
+            }
+
+            .progress-bar {
+              height: 100%; /* Höhe der Progressbar passt sich an den Container an */
+              background-color: #4caf50; /* Farbe der Progressbar */
+              border-radius: 10px 0 0 10px; /* Linke Ecken abrunden */
+              position: relative; /* Text innerhalb der Progressbar positionieren */
+            }
+
+            .progress-bar span {
+              position: absolute; /* Ermöglicht zentrierte Platzierung */
+              top: 50%; /* Vertikale Mitte */
+              left: 50%; /* Horizontale Mitte */
+              transform: translate(-50%, -50%); /* Exakte Zentrierung */
+              color: white; /* Textfarbe für guten Kontrast */
+              font-size: 12px; /* Schriftgröße anpassen */
+              font-weight: bold; /* Optional, für bessere Lesbarkeit */
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// #overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.8);
+//   display: none;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 1000;
+//   overflow: hidden;
+
+//   #card-container {
+//     background: linear-gradient(to right, #979b9e, #dcdedf, #979b9e);
+//     padding: 0.2rem;
+//     border-radius: 1rem;
+//     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+//     width: 20rem;
+//     aspect-ratio: 1/1.5;
+
+//     .big-pokemon-card {
+//       height: 100%;
+//       background-color: red;
+//       border-radius: 0.5rem;
+//       padding: 0.2rem 0.5rem;
+
+//       #big-pokemon-card-sections {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         gap: 0.5rem;
+//         .big-pokemon-card-section {
+//           display: flex;
+//           justify-content: space-between;
+//           width: 100%;
+//         }
+//         #img-info-section {
+//           width: 100%;
+//           height: 30%;
+//           background-size: cover;
+//           border: solid 1px white;
+//           border-radius: 1rem;
+//           display: flex;
+//           flex-direction: row;
+//           justify-content: space-evenly;
+//           align-items: center;
+//           display: flex;
+//           flex-direction: column;
+//           font-size: 0.8rem;
+//           div {
+//             display: flex;
+//           }
+//           #info-section {
+//             display: flex;
+//             justify-content: space-between;
+//             width: 80%;
+//           }
+//         }
+//         .types {
+//           display: flex;
+//           justify-content: space-evenly;
+//           margin-bottom: 0.5rem;
+//           .type {
+//             border: 1px solid white;
+//             border-radius: 1rem;
+//             height: auto;
+//             padding: 0.2rem 1rem;
+//             text-align: center;
+//             align-items: center;
+//             box-shadow: 1px 1px 1px $color-bg-dark;
+//           }
+//         }
+//         #abilities-section {
+//           display: flex;
+//           flex-direction: column;
+//           width: 90%;
+//           padding: 0.5rem 1rem;
+//           border: 1px solid white;
+//           border-radius: 1rem;
+//         }
+//       }
+//     }
+//   }
+// }
 
 footer {
   width: 100%;
