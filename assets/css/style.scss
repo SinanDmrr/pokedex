@@ -543,3 +543,21 @@ footer {
     padding: 0 2rem;
   }
 }
+
+@media (max-width: 550px) {
+  html {
+    font-size: 14px;
+  }
+  header {
+    #head-container {
+      a {
+        img {
+          width: 3rem;
+        }
+        h1 {
+          display: none;
+        }
+      }
+    }
+  }
+}

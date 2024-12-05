@@ -477,4 +477,15 @@ footer #footer-content #footer-links {
   footer {
     padding: 0 2rem;
   }
+}
+@media (max-width: 550px) {
+  html {
+    font-size: 14px;
+  }
+  header #head-container a img {
+    width: 3rem;
+  }
+  header #head-container a h1 {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
