@@ -23,11 +23,10 @@
   font-weight: 700;
   src: url("../fonts/fredoka-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-//Variablen
-//Fonts
+
 $font-family-pokemon: "Bangers", sans-serif;
 $font-family-header: "Fredoka", sans-serif;
-//Colors
+
 $color-header: #ffcd0d;
 $color-font-color: #ffffff;
 $color-border: #000000;
@@ -87,7 +86,7 @@ body {
 
     p {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 1.2rem;
 
       a {
         color: #ffcd0d;
@@ -118,12 +117,12 @@ body {
     }
 
     &:focus {
-      outline: none; // Keine Standardumrandung beim Fokus
-      box-shadow: 0 0 8px $color-border; // Box-Schatten für Fokus
+      outline: none;
+      box-shadow: 0 0 8px $color-border;
     }
 
     &:active {
-      transform: scale(0.98); // Leichte Verkleinerung beim Klicken
+      transform: scale(0.98);
     }
   }
 }
@@ -211,7 +210,7 @@ main {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 1;
+      z-index: 10;
       display: none;
       display: flex;
       justify-content: center;
@@ -312,6 +311,7 @@ main {
         }
       }
     }
+
     #load-more-btn {
       margin-top: 2rem;
     }
@@ -328,7 +328,7 @@ main {
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 5;
   overflow: hidden;
 
   #card-container-border {
@@ -339,9 +339,31 @@ main {
     min-width: 320px;
     aspect-ratio: 1/1.5;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: $color-border;
+
+    #card-container-border-arrow-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0.5rem 0;
+      img {
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6),
+          -2px -2px 6px rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        width: 4rem;
+        aspect-ratio: 1/1;
+
+        &:nth-child(2) {
+          transform: rotate(180deg);
+          box-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6),
+            -2px -2px 6px rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
 
     #card-container {
       display: flex;
@@ -461,11 +483,12 @@ main {
               border-radius: 10px;
               overflow: hidden;
               position: relative;
+              border: 1px solid rgba(0, 0, 0, 0.1);
             }
 
             .progress-bar {
               height: 100%;
-              background-color: #4caf50;
+              background-color: $color-header;
               border-radius: 10px 0 0 10px;
               position: relative;
             }
@@ -475,7 +498,7 @@ main {
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              color: white;
+              color: $color-border;
               font-size: 12px;
               font-weight: bold;
             }

@@ -11,7 +11,7 @@ function cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesStr
     `;
 }
 
-function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
+function bigCardTemplate(pokemonData, typesString, capitalizeName, background, percentages) {
     return /*html*/ `
     <div id="card-container-border" onclick="event.stopPropagation()">
         <div id="card-container" style="background-color: ${background}" >
@@ -72,7 +72,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[0].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[0].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[0]}%;">
                                         <span>${pokemonData.stats[0].base_stat}</span>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[1].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[1].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[1]}%;">
                                         <span>${pokemonData.stats[1].base_stat}</span>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[2].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[2].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[2]}%;">
                                         <span>${pokemonData.stats[2].base_stat}</span>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[3].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[3].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[3]}%;">
                                         <span>${pokemonData.stats[3].base_stat}</span>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[4].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[4].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[4]}%;">
                                         <span>${pokemonData.stats[4].base_stat}</span>
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                             <td>${(pokemonData.stats[5].stat.name).toUpperCase()}</td>
                             <td>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: ${pokemonData.stats[5].base_stat}%;">
+                                    <div class="progress-bar" style="width: ${percentages[5]}%;">
                                         <span>${pokemonData.stats[5].base_stat}</span>
                                     </div>
                                 </div>
@@ -130,8 +130,13 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background) {
                         </tr>
                     </table>
                 </div>
-            </div>
-        </div>        
+            </div>            
+        </div>   
+        <div id="card-container-border-arrow-container">
+            <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id - 2})"> 
+            <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id})"> 
+        </div> 
+        
     </div>
 `;
 }

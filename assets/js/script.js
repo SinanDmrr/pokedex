@@ -103,11 +103,16 @@ function getTypeOfPokemon(pokemonTypeContainer) {
     return typesString
 }
 
-function loadMore() {
+async function loadMore() {
     showLoadingAnimation();
     let startId = pokemonLimit + 1;
     pokemonLimit += 20;
-    fetchPokemon(pokemonLimit, startId);
+    try {
+        await fetchPokemon(pokemonLimit, startId);
+    } catch (error) {
+        console.error(error);
+        hideLoadingAnimation();
+    }
 }
 
 function filterPokemonCards(searchTerm) {
@@ -128,12 +133,34 @@ function filterPokemonCards(searchTerm) {
     loadMoreBtn.style.display = searchTerm.length > 0 ? "none" : "block";
 }
 
-function showPokemonDetails(id, background, capitalizeName) {
+async function showPokemonDetails(id) {
+    if (id < 0) {
+        return
+    } else if (id >= pokemonDataArray.length) {
+        await loadMore();
+    }
     const overlay = document.getElementById('overlay');
     const clickedPokemon = pokemonDataArray[id];
+    const background = typeInfo[clickedPokemon.types[0].type.name]?.[0] || "none";
+    const capitalizeName = clickedPokemon.name.charAt(0).toUpperCase() + clickedPokemon.name.slice(1);
     const typesString = getTypeOfPokemon(clickedPokemon.types);
+    let percentageProgress = progressBarMaxValue(clickedPokemon)
     showPokemonCardOverlay();
-    overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background);
+    overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background, percentageProgress);
+
+}
+
+function progressBarMaxValue(pokemonData) {
+    let percentages = [];
+    const stats = pokemonData.stats;
+    const maxStat = Math.max(...stats.map(stat => stat.base_stat));
+    stats.forEach(stat => {
+        const statName = stat.stat.name.toUpperCase();
+        const baseStat = stat.base_stat;
+        const percentage = (baseStat / maxStat) * 100;
+        percentages.push(percentage);
+    })
+    return percentages;
 }
 
 function showPokemonCardOverlay() {
