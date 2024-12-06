@@ -29,6 +29,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
                 <div id="big-pokemon-card-sections">
                     <p onclick="showSection('about')">About</p>
                     <p onclick="showSection('stats')">Base Stats</p>
+                    <p onclick="showSection('evolution')">Evolution</p>
                 </div>
                 <div id="about" class="">
                     <table>
@@ -130,13 +131,28 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
                         </tr>
                     </table>
                 </div>
+                <div id="evolution" class="d-none">
+                    <table>
+                        <tr>
+                            <td>${pokemonData["evolution"]?.["firstEvo"] || null}</td>
+                            <td><img src="${pokemonData["evolution"]?.["firstEvoImg"] || ''}" alt="${pokemonData["evolution"]?.["firstEvo"] || 'First Evolution'}" width="50"></td>
+                        </tr>
+                        <tr>
+                            <td>${pokemonData["evolution"]?.["secondEvo"] || null}</td>
+                            <td><img src="${pokemonData["evolution"]?.["secondEvoImg"] || ''}" alt="${pokemonData["evolution"]?.["secondEvo"] || 'Second Evolution'}" width="50"></td>
+                        </tr>
+                        <tr>
+                            <td>${pokemonData["evolution"]?.["thirdEvo"] || ""}</td>
+                            <td><img src="${pokemonData["evolution"]?.["thirdEvoImg"] || ''}" alt="${pokemonData["evolution"]?.["thirdEvo"] || 'Third Evolution'}" width="50"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>            
         </div>   
         <div id="card-container-border-arrow-container">
             <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id - 2})"> 
             <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id})"> 
         </div> 
-        
     </div>
 `;
 }

@@ -71,6 +71,34 @@ async function fetchPokemon(pokemonLimit, startId = 1) {
                 throw new Error('Network response was not okay');
             }
             const pokemonData = await response.json();
+            const speciesResponse = await fetch(pokemonData.species.url);
+            if (!speciesResponse.ok) {
+                throw new Error('Failed to fetch species data');
+            }
+            const speciesData = await speciesResponse.json();
+            const evolutionResponse = await fetch(speciesData.evolution_chain.url);
+            if (!evolutionResponse.ok) {
+                throw new Error('Failed to fetch evolution chain');
+            }
+            const evolutionData = await evolutionResponse.json();
+
+            const firstEvo = evolutionData['chain']?.['species']?.['name'] || null;
+            const secondEvo = evolutionData['chain']?.['evolves_to']?.[0]?.['species']?.['name'] || null;
+            const thirdEvo = evolutionData['chain']?.['evolves_to']?.[0]?.['evolves_to']?.[0]?.['species']?.['name'] || null;
+
+            const firstEvoImg = firstEvo ? await getPokemonImageUrl(firstEvo) : null;
+            const secondEvoImg = secondEvo ? await getPokemonImageUrl(secondEvo) : null;
+            const thirdEvoImg = thirdEvo ? await getPokemonImageUrl(thirdEvo) : null;
+
+            pokemonData.evolution = {
+                "firstEvo": firstEvo,
+                "firstEvoImg": firstEvoImg,
+                "secondEvo": secondEvo,
+                "secondEvoImg": secondEvoImg,
+                "thirdEvo": thirdEvo,
+                "thirdEvoImg": thirdEvoImg
+            };
+
             pokemonDataArray.push(pokemonData);
         } catch (error) {
             console.error('Error retrieving Pokémon:', error);
@@ -82,6 +110,15 @@ async function fetchPokemon(pokemonLimit, startId = 1) {
     }
     hideLoadingAnimation();
     loadMoreBtn.classList.remove("d-none");
+}
+
+async function getPokemonImageUrl(pokemonName) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data for ${pokemonName}`);
+    }
+    const data = await response.json();
+    return data.sprites.front_default;
 }
 
 function loadPokemonIntoCard(pokemonData) {
@@ -180,12 +217,17 @@ function hidePokemonCardOverlay() {
 function showSection(sectionToShow) {
     const aboutSection = document.getElementById("about");
     const statsSection = document.getElementById("stats");
+    const evolutionSection = document.getElementById("evolution");
 
-    if (sectionToShow === "about") {
+    aboutSection.classList.add("d-none");
+    statsSection.classList.add("d-none");
+    evolutionSection.classList.add("d-none");
+
+    if (sectionToShow == "about") {
         aboutSection.classList.remove("d-none");
-        statsSection.classList.add("d-none");
-    } else if (sectionToShow === "stats") {
+    } else if (sectionToShow == "stats") {
         statsSection.classList.remove("d-none");
-        aboutSection.classList.add("d-none");
+    } else if (sectionToShow == "evolution") {
+        evolutionSection.classList.remove("d-none");
     }
 }

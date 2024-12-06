@@ -446,6 +446,31 @@ main #main-container #load-more-btn {
   font-size: 12px;
   font-weight: bold;
 }
+#overlay #card-container-border #card-container #big-pokemon-card #evolution {
+  width: 100%;
+  height: 100%;
+}
+#overlay #card-container-border #card-container #big-pokemon-card #evolution table {
+  margin-top: 4rem;
+  width: 100%;
+}
+#overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody tr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody tr td img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  height: 80px;
+  width: 80px;
+}
 
 footer {
   width: 100%;
