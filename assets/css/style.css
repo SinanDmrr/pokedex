@@ -233,7 +233,7 @@ main #main-container #pokemon-card-container .pokemon-card {
   border-radius: 2rem;
   padding: 1rem;
   text-align: justify;
-  transition: transform 0.3s, filter 0.3s;
+  transition: transform 0.3s ease-in-out;
 }
 main #main-container #pokemon-card-container .pokemon-card #pokemon-img {
   width: 100%;
@@ -456,7 +456,7 @@ main #main-container #load-more-btn {
 }
 #overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 #overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody tr {

@@ -267,7 +267,7 @@ main {
         border-radius: 2rem;
         padding: 1rem;
         text-align: justify;
-        transition: transform 0.3s, filter 0.3s;
+        transition: transform 0.3s ease-in-out;
 
         #pokemon-img {
           width: 100%;
@@ -512,7 +512,7 @@ main {
             width: 100%;
             tbody {
               display: flex;
-              justify-content: space-between;
+              justify-content: space-evenly;
               align-items: center;
               tr {
                 display: flex;
