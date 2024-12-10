@@ -67,9 +67,6 @@ async function fetchPokemon(pokemonLimit, startId = 1) {
         try {
             const pokemonData = await fetchPokemonData(i);
             const speciesData = await fetchSpeciesData(pokemonData);
-            // const evolutionData = await fetchEvolutionData(speciesData);
-
-            // pokemonData.evolution = await parseEvolutionData(evolutionData);
             pokemonData.evolutionChainUrl = speciesData.evolution_chain.url;
             pokemonDataArray.push(pokemonData);
         } catch (error) {

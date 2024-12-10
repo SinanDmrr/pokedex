@@ -20,7 +20,7 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
                 <p>${capitalizeName}</p>
             </div>
             <div id="card-container-types">
-            ${typesString}
+                ${typesString}
             </div>
             <div id="card-container-img-container">
                 <img src="${pokemonData["sprites"]["other"]["official-artwork"]["front_default"]}" id="card-container-img" alt="">
@@ -132,33 +132,27 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
                     </table>
                 </div>
                 <div id="evolution" class="d-none">
-    <table>
-        ${pokemonData["evolution"]?.["firstEvo"]
-            ? `<tr>
-                <td>${pokemonData["evolution"]["firstEvo"]}</td>
-                <td>
-                    <img src="${pokemonData["evolution"]["firstEvoImg"] || ''}" alt="${pokemonData["evolution"]["firstEvo"]}" width="50">
-                </td>
-              </tr>`
-            : ''}
-        ${pokemonData["evolution"]?.["secondEvo"]
-            ? `<tr>
-                <td>${pokemonData["evolution"]["secondEvo"]}</td>
-                <td>
-                    <img src="${pokemonData["evolution"]["secondEvoImg"] || ''}" alt="${pokemonData["evolution"]["secondEvo"]}" width="50">
-                </td>
-              </tr>`
-            : ''}
-        ${pokemonData["evolution"]?.["thirdEvo"]
-            ? `<tr>
-                <td>${pokemonData["evolution"]["thirdEvo"]}</td>
-                <td>
-                    <img src="${pokemonData["evolution"]["thirdEvoImg"] || ''}" alt="${pokemonData["evolution"]["thirdEvo"]}" width="50">
-                </td>
-              </tr>`
-            : ''}
-    </table>
-</div>
+                    <table>
+                        ${pokemonData["evolution"]?.["firstEvo"] ? `<tr>
+                                <td>${pokemonData["evolution"]["firstEvo"]}</td>
+                                <td>
+                                    <img src="${pokemonData["evolution"]["firstEvoImg"] || ''}" alt="${pokemonData["evolution"]["firstEvo"]}" width="50">
+                                </td>
+                            </tr>` : ''}
+                        ${pokemonData["evolution"]?.["secondEvo"] ? `<tr>
+                                <td>${pokemonData["evolution"]["secondEvo"]}</td>
+                                <td>
+                                    <img src="${pokemonData["evolution"]["secondEvoImg"] || ''}" alt="${pokemonData["evolution"]["secondEvo"]}" width="50">
+                                </td>
+                            </tr>`  : ''}
+                        ${pokemonData["evolution"]?.["thirdEvo"] ? `<tr>
+                                <td>${pokemonData["evolution"]["thirdEvo"]}</td>
+                                <td>
+                                    <img src="${pokemonData["evolution"]["thirdEvoImg"] || ''}" alt="${pokemonData["evolution"]["thirdEvo"]}" width="50">
+                                </td>
+                            </tr>` : ''}
+                    </table>
+                </div>
             </div>            
         </div>   
         <div id="card-container-border-arrow-container">
