@@ -11,7 +11,7 @@ function cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesStr
     `;
 }
 
-function bigCardTemplate(pokemonData, typesString, capitalizeName, background, percentages) {
+function bigCardTemplate(pokemonData, typesString, capitalizeName, background, percentages, isFirst) {
     return /*html*/ `
     <div id="card-container-border" onclick="event.stopPropagation()">
         <div id="card-container" style="background-color: ${background}" >
@@ -162,7 +162,9 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
             </div>            
         </div>   
         <div id="card-container-border-arrow-container">
-            <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id - 2})"> 
+            <img src="assets/img/Arraow.png" 
+            onclick="showPokemonDetails(${pokemonData.id - 2})"
+            class=${isFirst ? 'd-none' : ''}> 
             <img src="assets/img/Arraow.png" onclick="showPokemonDetails(${pokemonData.id})"> 
         </div> 
     </div>

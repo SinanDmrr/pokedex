@@ -312,6 +312,7 @@ main #main-container #load-more-btn {
   border-radius: 50%;
   width: 4rem;
   aspect-ratio: 1/1;
+  cursor: pointer;
 }
 #overlay #card-container-border #card-container-border-arrow-container img:nth-child(2) {
   transform: rotate(180deg);
@@ -468,8 +469,8 @@ main #main-container #load-more-btn {
 #overlay #card-container-border #card-container #big-pokemon-card #evolution table tbody tr td img {
   -o-object-fit: fill;
      object-fit: fill;
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
 }
 
 footer {

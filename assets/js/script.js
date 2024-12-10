@@ -62,54 +62,78 @@ function hideLoadingAnimation() {
 
 async function fetchPokemon(pokemonLimit, startId = 1) {
     for (let i = startId; i <= pokemonLimit; i++) {
-        if (pokemonDataArray.some(pokemon => pokemon.id === i)) {
-            continue;
-        }
+        if (pokemonDataArray.some(pokemon => pokemon.id === i)) continue;
+
         try {
-            const response = await fetch(pokeApiNameOrNum + i);
-            if (!response.ok) {
-                throw new Error('Network response was not okay');
-            }
-            const pokemonData = await response.json();
-            const speciesResponse = await fetch(pokemonData.species.url);
-            if (!speciesResponse.ok) {
-                throw new Error('Failed to fetch species data');
-            }
-            const speciesData = await speciesResponse.json();
-            const evolutionResponse = await fetch(speciesData.evolution_chain.url);
-            if (!evolutionResponse.ok) {
-                throw new Error('Failed to fetch evolution chain');
-            }
-            const evolutionData = await evolutionResponse.json();
+            const pokemonData = await fetchPokemonData(i);
+            const speciesData = await fetchSpeciesData(pokemonData);
+            // const evolutionData = await fetchEvolutionData(speciesData);
 
-            const firstEvo = evolutionData['chain']?.['species']?.['name'] || null;
-            const secondEvo = evolutionData['chain']?.['evolves_to']?.[0]?.['species']?.['name'] || null;
-            const thirdEvo = evolutionData['chain']?.['evolves_to']?.[0]?.['evolves_to']?.[0]?.['species']?.['name'] || null;
-
-            const firstEvoImg = firstEvo ? await getPokemonImageUrl(firstEvo) : null;
-            const secondEvoImg = secondEvo ? await getPokemonImageUrl(secondEvo) : null;
-            const thirdEvoImg = thirdEvo ? await getPokemonImageUrl(thirdEvo) : null;
-
-            pokemonData.evolution = {
-                "firstEvo": firstEvo,
-                "firstEvoImg": firstEvoImg,
-                "secondEvo": secondEvo,
-                "secondEvoImg": secondEvoImg,
-                "thirdEvo": thirdEvo,
-                "thirdEvoImg": thirdEvoImg
-            };
-
+            // pokemonData.evolution = await parseEvolutionData(evolutionData);
+            pokemonData.evolutionChainUrl = speciesData.evolution_chain.url;
             pokemonDataArray.push(pokemonData);
         } catch (error) {
             console.error('Error retrieving Pokémon:', error);
         }
     }
+
+    renderAllPokemonCards();
+    hideLoadingAnimation();
+    loadMoreBtn.classList.remove("d-none");
+}
+
+async function fetchPokemonData(pokemonId) {
+    const response = await fetch(`${pokeApiNameOrNum}${pokemonId}`);
+    if (!response.ok) throw new Error('Failed to fetch Pokémon data');
+    return await response.json();
+}
+
+async function fetchSpeciesData(pokemonData) {
+    const response = await fetch(pokemonData.species.url);
+    if (!response.ok) throw new Error('Failed to fetch species data');
+    return await response.json();
+}
+
+async function fetchEvolutionData(speciesData) {
+    const response = await fetch(speciesData.evolution_chain.url);
+    if (!response.ok) throw new Error('Failed to fetch evolution chain');
+    return await response.json();
+}
+
+async function parseEvolutionData(evolutionData) {
+    const firstEvo = evolutionData.chain?.species?.name || null;
+    const secondEvo = evolutionData.chain?.evolves_to?.[0]?.species?.name || null;
+    const thirdEvo = evolutionData.chain?.evolves_to?.[0]?.evolves_to?.[0]?.species?.name || null;
+
+    return {
+        firstEvo: capitalizeFirstLetter(firstEvo),
+        firstEvoImg: firstEvo ? await getPokemonImageUrl(firstEvo) : null,
+        secondEvo: capitalizeFirstLetter(secondEvo),
+        secondEvoImg: secondEvo ? await getPokemonImageUrl(secondEvo) : null,
+        thirdEvo: capitalizeFirstLetter(thirdEvo),
+        thirdEvoImg: thirdEvo ? await getPokemonImageUrl(thirdEvo) : null,
+    };
+}
+
+async function loadEvolutionChain(pokemon) {
+    if (!pokemon.evolutionChainUrl || pokemon.evolution) return;
+
+    try {
+        const response = await fetch(pokemon.evolutionChainUrl);
+        if (!response.ok) throw new Error('Failed to fetch evolution chain');
+
+        const evolutionData = await response.json();
+        pokemon.evolution = await parseEvolutionData(evolutionData);
+    } catch (error) {
+        console.error('Error fetching evolution chain:', error);
+    }
+}
+
+function renderAllPokemonCards() {
     pokemonCardContainer.innerHTML = "";
     for (const pokemonData of pokemonDataArray) {
         loadPokemonIntoCard(pokemonData);
     }
-    hideLoadingAnimation();
-    loadMoreBtn.classList.remove("d-none");
 }
 
 async function getPokemonImageUrl(pokemonName) {
@@ -126,6 +150,11 @@ function loadPokemonIntoCard(pokemonData) {
     const capitalizeName = pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1);
     const typesString = getTypeOfPokemon(pokemonData.types);
     pokemonCardContainer.innerHTML += cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesString);
+}
+
+function capitalizeFirstLetter(name) {
+    if (!name) return null;
+    return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 function getTypeOfPokemon(pokemonTypeContainer) {
@@ -165,7 +194,7 @@ function filterPokemonCards(searchTerm) {
     filteredPokemon.forEach(pokemonData => loadPokemonIntoCard(pokemonData));
 
     if (filteredPokemon.length === 0) {
-        pokemonCardContainer.innerHTML = "<p>Keine Treffer gefunden.</p>";
+        pokemonCardContainer.innerHTML = "<p>No hits found.</p>";
     }
     loadMoreBtn.style.display = searchTerm.length > 0 ? "none" : "block";
 }
@@ -178,13 +207,14 @@ async function showPokemonDetails(id) {
     }
     const overlay = document.getElementById('overlay');
     const clickedPokemon = pokemonDataArray[id];
+    let isFirst = id === 0;
     const background = typeInfo[clickedPokemon.types[0].type.name]?.[0] || "none";
     const capitalizeName = clickedPokemon.name.charAt(0).toUpperCase() + clickedPokemon.name.slice(1);
     const typesString = getTypeOfPokemon(clickedPokemon.types);
     let percentageProgress = progressBarMaxValue(clickedPokemon)
+    await loadEvolutionChain(clickedPokemon);
     showPokemonCardOverlay();
-    overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background, percentageProgress);
-
+    overlay.innerHTML = bigCardTemplate(clickedPokemon, typesString, capitalizeName, background, percentageProgress, isFirst);
 }
 
 function progressBarMaxValue(pokemonData) {
