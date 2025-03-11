@@ -1,3 +1,11 @@
+/**
+ * Creates an HTML template for a Pokémon card.
+ * @param {object} pokemonData - The Pokémon data, including ID, sprites, and types.
+ * @param {string} cardBackgroundColor - The background color of the card, based on the primary type.
+ * @param {string} capitalizeName - The capitalized name of the Pokémon.
+ * @param {string} typesString - An HTML string containing the Pokémon's types.
+ * @returns {string} - An HTML string representing the Pokémon card.
+ */
 function cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesString) {
     return /*html*/ `
     <div id="pokemon-card-${pokemonData.id}" class="pokemon-card" style="background-color: ${cardBackgroundColor}" 
@@ -11,6 +19,16 @@ function cardTemplate(pokemonData, cardBackgroundColor, capitalizeName, typesStr
     `;
 }
 
+/**
+ * Creates an HTML template for the detailed view of a Pokémon.
+ * @param {object} pokemonData - The Pokémon data, including ID, types, stats, moves, and evolutions.
+ * @param {string} typesString - An HTML string containing the Pokémon's types.
+ * @param {string} capitalizeName - The capitalized name of the Pokémon.
+ * @param {string} background - The background color of the card, based on the primary type.
+ * @param {number[]} percentages - An array of percentage values for base stats progress bars.
+ * @param {boolean} isFirst - Indicates whether this is the first Pokémon (for arrow navigation logic).
+ * @returns {string} - An HTML string representing the detailed Pokémon card.
+ */
 function bigCardTemplate(pokemonData, typesString, capitalizeName, background, percentages, isFirst) {
     return /*html*/ `
     <div id="card-container-border" onclick="event.stopPropagation()">
@@ -163,4 +181,36 @@ function bigCardTemplate(pokemonData, typesString, capitalizeName, background, p
         </div> 
     </div>
 `;
+}
+
+/**
+ * Updates the evolution section with the loaded evolution data.
+ * @param {object} pokemon - The Pokémon object containing evolution data.
+ */
+function updateEvolutionSection(pokemon) {
+    const evolutionSection = document.getElementById('evolution');
+    if (evolutionSection) {
+        evolutionSection.innerHTML = /*html*/ `
+            <table>
+                ${pokemon.evolution?.firstEvo ? `<tr>
+                    <td>${pokemon.evolution.firstEvo}</td>
+                    <td>
+                        <img src="${pokemon.evolution.firstEvoImg || ''}" alt="${pokemon.evolution.firstEvo}" width="50">
+                    </td>
+                </tr>` : ''}
+                ${pokemon.evolution?.secondEvo ? `<tr>
+                    <td>${pokemon.evolution.secondEvo}</td>
+                    <td>
+                        <img src="${pokemon.evolution.secondEvoImg || ''}" alt="${pokemon.evolution.secondEvo}" width="50">
+                    </td>
+                </tr>` : ''}
+                ${pokemon.evolution?.thirdEvo ? `<tr>
+                    <td>${pokemon.evolution.thirdEvo}</td>
+                    <td>
+                        <img src="${pokemon.evolution.thirdEvoImg || ''}" alt="${pokemon.evolution.thirdEvo}" width="50">
+                    </td>
+                </tr>` : ''}
+            </table>
+        `;
+    }
 }
